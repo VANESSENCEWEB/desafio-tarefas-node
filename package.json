@@ -1,0 +1,12 @@
+{
+  "name": "desafio-tarefas",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "import": "node streams/import-csv.js"
+  },
+  "dependencies": {
+    "csv-parse": "^5.5.6"
+  }
+}
