@@ -43,4 +43,39 @@ export const routes = [
       return res.writeHead(201).end(JSON.stringify(task))
     }
   },
+  {
+    // ATUALIZAR (title e/ou description)
+    method: 'PUT',
+    path: buildRoutePath('/tasks/:id'),
+    handler: (req, res) => {
+      const { id } = req.params
+      const { title, description } = req.body ?? {}
+
+      if (!title && !description) {
+        return res.writeHead(400).end(JSON.stringify({ message: 'Envie title ou description' }))
+      }
+
+      if (!database.findById('tasks', id)) return notFound(res)
+
+      database.update('tasks', id, {
+        ...(title && { title }),
+        ...(description && { description }),
+        updated_at: new Date()
+      })
+
+      return res.writeHead(204).end()
+    }
+  },
+  {
+    // REMOVER
+    method: 'DELETE',
+    path: buildRoutePath('/tasks/:id'),
+    handler: (req, res) => {
+      const { id } = req.params
+      if (!database.findById('tasks', id)) return notFound(res)
+
+      database.delete('tasks', id)
+      return res.writeHead(204).end()
+    }
+  },
 ]
