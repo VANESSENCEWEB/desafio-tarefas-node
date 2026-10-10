@@ -1,0 +1,28 @@
+### Criar tarefa
+POST http://localhost:3333/tasks
+Content-Type: application/json
+
+{
+  "title": "Estudar Node",
+  "description": "Fazer o desafio de tarefas"
+}
+
+### Listar todas
+GET http://localhost:3333/tasks
+
+### Listar com filtro
+GET http://localhost:3333/tasks?search=node
+
+### Atualizar (troque o ID)
+PUT http://localhost:3333/tasks/COLE-O-ID-AQUI
+Content-Type: application/json
+
+{
+  "title": "Título novo"
+}
+
+### Marcar/desmarcar como concluída
+PATCH http://localhost:3333/tasks/COLE-O-ID-AQUI/complete
+
+### Remover
+DELETE http://localhost:3333/tasks/COLE-O-ID-AQUI
